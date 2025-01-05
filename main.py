@@ -5,28 +5,21 @@ import os
 # Load the trained model
 from PIL import Image
 import gdown
+import requests
 
-url2 = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
 
-
-def download_and_load_model(file_url, file_name):
-    if not os.path.exists(file_name):
-        gdown.download(file_url, file_name, quiet=False)
-    return joblib.load(file_name)
-
-from PIL import Image, UnidentifiedImageError
 
 # Téléchargez l'image à partir de Google Drive
-url = "https://drive.google.com/file/d/1394dwbLx6HmR5cEYbJvTFUx8O409luRb/view?usp=sharing"
-output = "ali_test.jpg"
+url = "https://1drv.ms/i/c/e88ce4e0014897ff/EUSZ0x0i8uhEocLzRGrvrJIBfsNmJROEIoAYyFs9bScbKg?e=7IEOek"
+
 
 # Téléchargement de l'image
-gdown.download(url, output, quiet=False)
+response = requests.get(url)
 
 # Vérification si le fichier téléchargé est bien une image
 try:
     # Essayez d'ouvrir l'image
-    image = Image.open(output)
+    image = Image.open(response)
     image.verify()  # Vérifie si l'image est valide
     
     # Si l'image est valide, l'afficher
@@ -40,7 +33,7 @@ except Exception as e:
 
 
 # Chargement des fichiers
-model = download_and_load_model(url2, "model randomforest.pkl")
+model ="model randomforest.pkl"
 
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
