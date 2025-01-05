@@ -6,7 +6,7 @@ import os
 from PIL import Image
 import gdown
 
-url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
+url2 = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
 
 
 def download_and_load_model(file_url, file_name):
@@ -14,15 +14,33 @@ def download_and_load_model(file_url, file_name):
         gdown.download(file_url, file_name, quiet=False)
     return joblib.load(file_name)
 
+from PIL import Image, UnidentifiedImageError
 
-pic="https://drive.google.com/file/d/1394dwbLx6HmR5cEYbJvTFUx8O409luRb/view?usp=sharing"
+# Téléchargez l'image à partir de Google Drive
+url = "https://drive.google.com/file/d/1394dwbLx6HmR5cEYbJvTFUx8O409luRb/view?usp=sharing"
 output = "ali_test.jpg"
-gdown.download(pic, output, quiet=False)
-image = Image.open(output)
-st.image(image, caption="Image téléchargée depuis Google Drive", use_column_width=True)
+
+# Téléchargement de l'image
+gdown.download(url, output, quiet=False)
+
+# Vérification si le fichier téléchargé est bien une image
+try:
+    # Essayez d'ouvrir l'image
+    image = Image.open(output)
+    image.verify()  # Vérifie si l'image est valide
+    
+    # Si l'image est valide, l'afficher
+    st.title("Afficher une image téléchargée avec Streamlit")
+    st.image(image, caption="Image téléchargée depuis Google Drive", use_column_width=True)
+except UnidentifiedImageError:
+    st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
+except Exception as e:
+    st.error(f"Une erreur est survenue : {e}")
+
+
 
 # Chargement des fichiers
-model = download_and_load_model(url, "model randomforest.pkl")
+model = download_and_load_model(url2, "model randomforest.pkl")
 
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
