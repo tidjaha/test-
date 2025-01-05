@@ -8,11 +8,11 @@ import gdown
 
 url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
 output = "model_randomforest.pkl"
-gdown.download(url, output, quiet=False)
+m=gdown.download(url, output, quiet=False)
 
 
 
-model = joblib.load("model_randomforest.pkl")
+model = joblib.load(m)
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
 encoder0= joblib.load("encoder de la colone ethni.pkl")
