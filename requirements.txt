@@ -3,4 +3,4 @@ streamlit
 joblib
 matplotlib
 numpy
-zipfile
+
