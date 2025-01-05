@@ -4,7 +4,14 @@ import joblib
 import matplotlib.pyplot as plt
 # Load the trained model
 
-model = joblib.load('model randomforest.pkl')
+import os
+
+# Décompression conditionnelle (uniquement si le dossier de destination n'existe pas)
+if not os.path.exists('extracted_data/'):
+    extract_zip('resources/model randomforest.zip', 'extracted_data/')
+
+
+model = joblib.load('extracted_data/model randomforest.pkl')
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
 encoder0= joblib.load("encoder de la colone ethni.pkl")
