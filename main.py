@@ -7,12 +7,16 @@ import joblib
 import gdown
 
 url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
-output = "model_randomforest.pkl"
-m=gdown.download(url, output, quiet=False)
 
 
+def download_and_load_model(file_url, file_name):
+    if not os.path.exists(file_name):
+        gdown.download(file_url, file_name, quiet=False)
+    return joblib.load(file_name)
 
-model = joblib.load(m)
+# Chargement des fichiers
+model = download_and_load_model(url, "model randomforest.pkl")
+
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
 encoder0= joblib.load("encoder de la colone ethni.pkl")
