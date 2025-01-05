@@ -13,32 +13,22 @@ url = "https://drive.google.com/uc?export=download&id=1394dwbLx6HmR5cEYbJvTFUx8O
 
 
 
-# Téléchargement de l'image
-response = requests.get(url)
+output_path = "downloaded_image.jpg"
+gdown.download(url, output_path, quiet=False)
 
-# Vérification de la réponse HTTP
-if response.status_code == 200:
-    content_type = response.headers.get('Content-Type')
-    
-    # Vérifier que le contenu est bien une image
-    if 'image' in content_type:
-        try:
-            # Convertir le contenu de la réponse en image
-            image_data = BytesIO(response.content)
-            image = Image.open(image_data)
-            image.verify()  # Vérifie si l'image est valide
-            
-            # Afficher l'image avec Streamlit
-            st.image(image, caption="Image téléchargée", use_container_width=True)
-        except UnidentifiedImageError:
-            st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
-        except Exception as e:
-            st.error(f"Une erreur est survenue lors du traitement de l'image : {e}")
-    else:
-        st.error(f"Erreur : Le fichier téléchargé n'est pas une image. Type de contenu : {content_type}")
-else:
-    st.error(f"Erreur : Le téléchargement de l'image a échoué avec le statut {response.status_code}.")
+# Vérification si le fichier téléchargé est une image
+try:
+    # Ouvrir l'image téléchargée
+    image = Image.open(output_path)
+    image.verify()  # Vérifie si l'image est valide
 
+    # Afficher l'image si elle est valide
+    st.image(image, caption="Image téléchargée depuis Google Drive", use_container_width=True)
+
+except UnidentifiedImageError:
+    st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
+except Exception as e:
+    st.error(f"Une erreur est survenue : {e}")
 # Chargement des fichiers
 model ="model randomforest.pkl"
 
