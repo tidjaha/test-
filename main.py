@@ -46,13 +46,13 @@ def predict(input_features):
 
     prediction = model.predict(input_features)
     prediction=scaler.inverse_transform(prediction)
-    fig, ax = plt.subplots(figsize=(4, 4))
-    ax.bar(["Math","Lecture","Ecriture"],prediction[0] , color=['red','blue','black'], label=[f"Math = {prediction[0][0]:.2f}",f"Lecture = {prediction[0][1]:.2f}",f"Ecriture = {prediction[0][2]:.2f}"])
-    ax.set_ylim(0, 100)
-    ax.set_title('Les trois notes')
-    ax.legend()
-    ax.set_ylabel('Notes')
-    plot=st.pyplot(fig)
+    #fig, ax = plt.subplots(figsize=(4, 4))
+    #ax.bar(["Math","Lecture","Ecriture"],prediction[0] , color=['red','blue','black'], label=[f"Math = {prediction[0][0]:.2f}",f"Lecture = {prediction[0][1]:.2f}",f"Ecriture = {prediction[0][2]:.2f}"])
+    #ax.set_ylim(0, 100)
+    #ax.set_title('Les trois notes')
+    #ax.legend()
+    #ax.set_ylabel('Notes')
+    #plot=st.pyplot(fig)
     return f"votre note de lecture : {prediction[0][1]:.2f}\n\nvotre note d'ecriture :{prediction[0][2]:.2f}\n\nvotre note de math : { prediction[0][0]:.2f}\n\n "
 
 # Create the web interface
