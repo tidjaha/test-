@@ -10,27 +10,21 @@ from io import BytesIO  # Importation nécessaire
 import requests
 
 # URL de Google Drive (assurez-vous que c'est un lien de téléchargement direct)
-url = "https://drive.google.com/uc?export=download&id=1394dwbLx6HmR5cEYbJvTFUx8O409luRb"  # Exemple d'ID
+url = "https://drive.google.com/uc?export=download&id=1PMSww8m1CdNKdV964laKA8dfeJqrmb_-"  # Exemple d'ID
 
 # Téléchargement du fichier avec requests
 response = requests.get(url, stream=True)
 
 # Sauvegarder l'image téléchargée dans un fichier temporaire
-image_path = "image_telechargee.jpg"
+image_path = "RFmodel.pkl"
 with open(image_path, 'wb') as file:
     for chunk in response.iter_content(chunk_size=128):
         file.write(chunk)
 
-# Vérification et ouverture de l'image avec PIL
-try:
-    image = Image.open(image_path)
-    st.title("Image téléchargée depuis Google Drive")
-    st.image(image, caption="Image téléchargée avec Streamlit", use_container_width=True)
-except Exception as e:
-    st.error(f"Une erreur est survenue lors de l'ouverture de l'image : {e}")
 
 
-model ="model randomforest.pkl"
+
+model =joblib.load(image_path)
 
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
