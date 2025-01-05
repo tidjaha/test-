@@ -6,30 +6,28 @@ import os
 from PIL import Image, UnidentifiedImageError
 import gdown
 import requests
+from io import BytesIO  # Importation nécessaire
 
-
-
-# Téléchargez l'image à partir de Google Drive
+# Téléchargez l'image à partir de Google Drive ou OneDrive
 url = "https://1drv.ms/i/c/e88ce4e0014897ff/EUSZ0x0i8uhEocLzRGrvrJIBfsNmJROEIoAYyFs9bScbKg?e=7IEOek"
-
 
 # Téléchargement de l'image
 response = requests.get(url)
 
 # Vérification si le fichier téléchargé est bien une image
 try:
-    # Essayez d'ouvrir l'image
-    image = Image.open(response)
+    # Lire le contenu de la réponse HTTP en mémoire et le convertir en un fichier image
+    image_data = BytesIO(response.content)
+    image = Image.open(image_data)
     image.verify()  # Vérifie si l'image est valide
     
     # Si l'image est valide, l'afficher
     st.title("Afficher une image téléchargée avec Streamlit")
-    st.image(image, caption="Image téléchargée depuis Google Drive", use_column_width=True)
+    st.image(image, caption="Image téléchargée depuis OneDrive", use_column_width=True)
 except UnidentifiedImageError:
     st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
 except Exception as e:
     st.error(f"Une erreur est survenue : {e}")
-
 
 
 # Chargement des fichiers
