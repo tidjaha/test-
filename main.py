@@ -12,7 +12,7 @@ gdown.download(url, output, quiet=False)
 
 
 
-model = output
+model = joblib.load(output)
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
 encoder0= joblib.load("encoder de la colone ethni.pkl")
