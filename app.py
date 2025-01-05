@@ -5,7 +5,17 @@ import matplotlib.pyplot as plt
 import extract_zip
 # Load the trained model
 
+
 import os
+
+def extract_zip(zip_path, extract_to):
+    import zipfile
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+
+
+# Exemple d'utilisation
+extract_zip('resources/data.zip', 'extracted_data/')
 
 # Décompression conditionnelle (uniquement si le dossier de destination n'existe pas)
 if not os.path.exists('extracted_data/'):
