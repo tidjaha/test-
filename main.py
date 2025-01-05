@@ -9,7 +9,7 @@ import requests
 from io import BytesIO  # Importation nécessaire
 
 # Téléchargez l'image à partir de Google Drive ou OneDrive
-url = "https://1drv.ms/i/c/e88ce4e0014897ff/EUSZ0x0i8uhEocLzRGrvrJIBfsNmJROEIoAYyFs9bScbKg?e=7IEOek"
+url = "https://1drv.ms/i/c/e88ce4e0014897ff/EUSZ0x0i8uhEocLzRGrvrJIBpMz5RGypRRnKzPomEg3LGA?e=NlCAPd"
 
 # Téléchargement de l'image
 response = requests.get(url)
