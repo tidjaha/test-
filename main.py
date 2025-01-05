@@ -16,7 +16,7 @@ def download_and_load_model(file_url, file_name):
 
 
 pic="https://drive.google.com/file/d/1394dwbLx6HmR5cEYbJvTFUx8O409luRb/view?usp=sharing"
-output = "ali test.jpg"
+output = "ali_test.jpg"
 gdown.download(pic, output, quiet=False)
 image = Image.open(output)
 st.image(image, caption="Image téléchargée depuis Google Drive", use_column_width=True)
