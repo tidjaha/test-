@@ -4,4 +4,3 @@ joblib
 scikit-learn
 matplotlib
 gdown
-PIL
