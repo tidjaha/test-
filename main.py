@@ -9,7 +9,7 @@ import requests
 from io import BytesIO  # Importation nécessaire
 
 # Téléchargez l'image à partir de Google Drive ou OneDrive
-url = "https://1drv.ms/i/c/e88ce4e0014897ff/EUSZ0x0i8uhEocLzRGrvrJIBpMz5RGypRRnKzPomEg3LGA?e=NlCAPd"
+url = "https://cloudconvert-files.s3.eu-central-1.amazonaws.com/661669a9-da44-4fd5-ba63-c59c28825284/alitest.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAI2WCZ54772T33JEQ%2F20250105%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250105T182150Z&X-Amz-Expires=86400&X-Amz-Signature=a504541d16fd9eac7127f4ae550f135718b505f786a76457936633a06cf1bca7&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22alitest.jpg%22&response-content-type=image%2Fjpeg&x-id=GetObject"
 
 # Téléchargement de l'image
 response = requests.get(url)
