@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 import os
 # Load the trained model
-
+from PIL import Image
 import gdown
 
 url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
@@ -19,6 +19,7 @@ pic="https://drive.google.com/file/d/1394dwbLx6HmR5cEYbJvTFUx8O409luRb/view?usp=
 output = "ali test.jpg"
 gdown.download(pic, output, quiet=False)
 image = Image.open(output)
+st.image(image, caption="Image téléchargée depuis Google Drive", use_column_width=True)
 
 # Chargement des fichiers
 model = download_and_load_model(url, "model randomforest.pkl")
