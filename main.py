@@ -14,6 +14,12 @@ def download_and_load_model(file_url, file_name):
         gdown.download(file_url, file_name, quiet=False)
     return joblib.load(file_name)
 
+
+pic="https://drive.google.com/file/d/1394dwbLx6HmR5cEYbJvTFUx8O409luRb/view?usp=sharing"
+output = "ali test.jpg"
+gdown.download(pic, output, quiet=False)
+image = Image.open(output)
+
 # Chargement des fichiers
 model = download_and_load_model(url, "model randomforest.pkl")
 
