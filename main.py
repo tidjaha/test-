@@ -14,21 +14,19 @@ url = "https://cloudconvert-files.s3.eu-central-1.amazonaws.com/661669a9-da44-4f
 # Téléchargement de l'image
 response = requests.get(url)
 
-# Vérification si le fichier téléchargé est bien une image
-try:
-    # Lire le contenu de la réponse HTTP en mémoire et le convertir en un fichier image
-    image_data = BytesIO(response.content)
-    image = Image.open(image_data)
-    image.verify()  # Vérifie si l'image est valide
-    
-    # Si l'image est valide, l'afficher
-    st.title("Afficher une image téléchargée avec Streamlit")
-    st.image(image, caption="Image téléchargée depuis OneDrive", use_column_width=True)
-except UnidentifiedImageError:
-    st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
-except Exception as e:
-    st.error(f"Une erreur est survenue : {e}")
-
+if response.status_code == 200:
+    try:
+        # Convertir le contenu de la réponse en image
+        image_data = BytesIO(response.content)
+        image = Image.open(image_data)
+        image.verify()  # Vérifie si l'image est valide
+        st.image(image, caption="Image téléchargée", use_container_width=True)
+    except UnidentifiedImageError:
+        st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
+    except Exception as e:
+        st.error(f"Une erreur est survenue : {e}")
+else:
+    st.error(f"Erreur : Le téléchargement de l'image a échoué avec le statut {response.status_code}.")
 
 # Chargement des fichiers
 model ="model randomforest.pkl"
