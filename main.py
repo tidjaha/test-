@@ -5,31 +5,31 @@ import os
 # Load the trained model
 from PIL import Image, UnidentifiedImageError
 import gdown
-import requests
+
 from io import BytesIO  # Importation nécessaire
+import requests
 
-# Téléchargez l'image à partir de Google Drive ou OneDrive
-url = "https://drive.google.com/uc?export=download&id=1394dwbLx6HmR5cEYbJvTFUx8O409luRb"
+# URL de Google Drive (assurez-vous que c'est un lien de téléchargement direct)
+url = "https://drive.google.com/uc?export=download&id=1394dwbLx6HmR5cEYbJvTFUx8O409luRb"  # Exemple d'ID
 
+# Téléchargement du fichier avec requests
+response = requests.get(url, stream=True)
 
+# Sauvegarder l'image téléchargée dans un fichier temporaire
+image_path = "image_telechargee.jpg"
+with open(image_path, 'wb') as file:
+    for chunk in response.iter_content(chunk_size=128):
+        file.write(chunk)
 
-output_path = "downloaded_image.jpg"
-gdown.download(url, output_path, quiet=False)
-
-# Vérification si le fichier téléchargé est une image
+# Vérification et ouverture de l'image avec PIL
 try:
-    # Ouvrir l'image téléchargée
-    image = Image.open(output_path)
-    image.verify()  # Vérifie si l'image est valide
-
-    # Afficher l'image si elle est valide
-    st.image(image, caption="Image téléchargée depuis Google Drive", use_container_width=True)
-
-except UnidentifiedImageError:
-    st.error("Erreur : Le fichier téléchargé n'est pas une image valide.")
+    image = Image.open(image_path)
+    st.title("Image téléchargée depuis Google Drive")
+    st.image(image, caption="Image téléchargée avec Streamlit", use_container_width=True)
 except Exception as e:
-    st.error(f"Une erreur est survenue : {e}")
-# Chargement des fichiers
+    st.error(f"Une erreur est survenue lors de l'ouverture de l'image : {e}")
+
+
 model ="model randomforest.pkl"
 
 scaler = joblib.load('scale des notes.pkl')
