@@ -6,7 +6,7 @@ import joblib
 
 import gdown
 
-url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=drive_link"
+url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=sharing"
 output = "model_randomforest.pkl"
 gdown.download(url, output, quiet=False)
 
