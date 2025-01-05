@@ -5,23 +5,9 @@ import joblib
 # Load the trained model
 
 
-import os
-
-def extract_zip(zip_path, extract_to):
-    import zipfile
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_to)
 
 
-# Exemple d'utilisation
-extract_zip('resources/data.zip', 'extracted_data/')
-
-# Décompression conditionnelle (uniquement si le dossier de destination n'existe pas)
-if not os.path.exists('extracted_data/'):
-    extract_zip('resources/model randomforest.zip', 'extracted_data/')
-
-
-model = joblib.load('extracted_data/model randomforest.pkl')
+model = joblib.load('model randomforest.pkl')
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
 encoder0= joblib.load("encoder de la colone ethni.pkl")
