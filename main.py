@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 import os
 # Load the trained model
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 import gdown
 import requests
 
