@@ -4,10 +4,15 @@ import joblib
 
 # Load the trained model
 
+import gdown
+
+url = "https://drive.google.com/file/d/1PMSww8m1CdNKdV964laKA8dfeJqrmb_-/view?usp=drive_link"
+output = "model_randomforest.pkl"
+gdown.download(url, output, quiet=False)
 
 
 
-model = joblib.load('model randomforest.pkl')
+model = output
 scaler = joblib.load('scale des notes.pkl')
 scaler0= joblib.load("scale du nbslibing.pkl")
 encoder0= joblib.load("encoder de la colone ethni.pkl")
