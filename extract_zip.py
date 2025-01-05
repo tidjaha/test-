@@ -1,4 +1,4 @@
-import zipfile
+
 import os
 
 def extract_zip(file_path, extract_to):
